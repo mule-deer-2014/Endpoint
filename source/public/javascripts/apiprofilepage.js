@@ -83,18 +83,23 @@ app.ApiProfile.Views.Reviews = Backbone.View.extend({
 
 
   upVote: function(){
-    console.log("YOLO")
-    var user_id = $.cookie("user_id")
-    var that = this
-    $.ajax({
-      url: '/reviews/'+ that.id +'/votes',
-      type: 'POST',
-      data: {user_id: user_id},
-    })
-    .done(function(data) {
-      var newVoteCount = data.vote_count
-      $(".vote-count").text(newVoteCount)
-    })
+    var cookie = $.cookie()
+    if (jQuery.isEmptyObject(cookie)) {
+      alert("not valid cookie");
+    } else { 
+      console.log("YOLO");
+      var user_id = $.cookie("user_id");
+      var that = this;
+      $.ajax({
+        url: '/reviews/'+ that.id +'/votes',
+        type: 'POST',
+        data: {user_id: user_id},
+      })
+      .done(function(data) {
+        var newVoteCount = data.vote_count
+        $(".vote-count").text(newVoteCount)
+      })
+    }   
   },
 
 
