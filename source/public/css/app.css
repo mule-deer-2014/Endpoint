@@ -885,6 +885,7 @@ body {
     /*background-image: url();*/
 }
 
-#app-boyd {
-    padding-top: 100px
+#app-body {
+    margin-top: 10%;
+    padding-top: 100px;
 }

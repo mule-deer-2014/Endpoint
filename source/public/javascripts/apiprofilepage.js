@@ -66,11 +66,12 @@ app.ApiProfile.Models.Review = Backbone.Model.extend({
 
 
 app.ApiProfile.Views.Reviews = Backbone.View.extend({
+
   
   model: app.ApiProfile.Models.Review,
 
   events: {
-    "click #upvote": "upVote",
+    "click .upvote": "upVote",
     "click .comment-toggler": "toggleComments"
   },
 
@@ -95,6 +96,7 @@ app.ApiProfile.Views.Reviews = Backbone.View.extend({
     })
   },
 
+
   toggleComments: function(e){
     e.preventDefault();
     $('.comment-area').toggle()
@@ -113,8 +115,6 @@ app.ApiProfile.Views.Reviews = Backbone.View.extend({
         allReviewsHTML = ""
         for(var i=0; i< data.reviews.length; i++){
           reviewObject.set(data.reviews[i]);
-          console.log(data.reviews[i]);
-          debugger
           var templates = that.$el.html(that.singleReviewTemplate(reviewObject.attributes));
           allReviewsHTML += templates[0].innerHTML
         };
@@ -123,4 +123,13 @@ app.ApiProfile.Views.Reviews = Backbone.View.extend({
         $("#tab4").append(allReviewsHTML);
       })
     }
+
 })
+
+
+
+
+
+
+
+

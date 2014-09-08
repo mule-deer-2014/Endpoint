@@ -6,10 +6,11 @@ class ReviewsController < ApplicationController
     	api = Api.find(params[:api_id])
       comments_array = []
     	reviews = api.reviews
+      vote = reviews.votes.count
       reviews.each do |rev|
         comments_array << rev.comments
       end     
-    	render json: {reviews: reviews, comments: comments_array.flatten vote: }.to_json
+    	render json: {reviews: reviews, comments: comments_array.flatten vote: vote}.to_json
     elsif params[:user_id]
       	user = User.find(params[:user_id])
       	reviews = user.reviews 
