@@ -78,4 +78,30 @@ app.ApiProfile.Views.Reviews = Backbone.View.extend({
     this.$el.html(this.template(this.model.attributes));
     return this;
   },
+  upVote: function(){
+    console.log("YOLO")
+    var user_id = $.cookie("user_id")
+    var that = this
+    $.ajax({
+      url: '/reviews/1/votes',
+      type: 'POST',
+      data: {user_id: user_id},
+    })
+    .done(function(data) {
+      debugger
+      var newVoteCount = data.vote_count
+      // find where da votes be at!!!
+      // den be like you i need to update you!!!
+      // den just update dat shit esse!!!
+      console.log("success");
+    })
+    .fail(function() {
+      debugger
+      console.log("error");
+    })
+    .always(function() {
+      console.log("complete");
+    });
+
+  }
 })
