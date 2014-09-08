@@ -17,10 +17,12 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'strong_parameters'
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
-  # gem 'capybara'
+  gem 'capybara'
+  gem 'cucumber'
   gem 'jasmine-rails'
   gem 'faker'
   gem 'httparty'
+  gem 'selenium-webdriver'
 end
 
 

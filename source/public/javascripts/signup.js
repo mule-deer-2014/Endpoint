@@ -24,9 +24,9 @@ app.SignUp.Views.SignUpPage = Backbone.View.extend({
 			type: 'post',
 			data: {email: this.email, password: this.password}
 		}).done(function(data){
-			debugger
 			if (data.user) {
 			$.cookie("user_id", data.user.id)
+			app.router.navigate("", true)
 			} else if (data.errors){
 				errors = data.errors
 				errorsHTML = ""

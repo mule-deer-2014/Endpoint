@@ -15,7 +15,8 @@ app.SearchResults.View = Backbone.View.extend({
         templates += this.template(data.apis[i])
       }
       $('#app-body').empty();
-      $('#app-body').html(templates);
+      $('#app-body').append('<div id="search-list"></div>');
+      $('#search-list').html(templates);
       $(".result").on('click', this.navigateToProfile);
     }.bind(this)).fail(function(){
     })
