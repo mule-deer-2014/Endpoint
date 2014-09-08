@@ -3,7 +3,7 @@ app.Router = Backbone.Router.extend({
 		"": "navigateToHome",
 		"signup": "navigateToSignUp",
 		"login": "navigateToLogin",
-		"searchResults": "navigateToSearchResults",
+		"search=:query": "navigateToSearchResults",
 		"api/:id": "navigateToApiProfile"
 	},
 
@@ -36,11 +36,12 @@ app.Router = Backbone.Router.extend({
 		$("#app-body").html(login.render().$el);
 	},
 
-	navigateToSearchResults: function(){
+	navigateToSearchResults: function(query){
+		console.log(query)
 		var navbar = new app.NavBar.Views.NavBarView();
 		$('#navbar').html(navbar.render().$el)
 		this.toggleNavBar();
-		var result = new app.SearchResults.View();
+		var result = new app.Views.SearchResults();
 		result.render()
 	},
 

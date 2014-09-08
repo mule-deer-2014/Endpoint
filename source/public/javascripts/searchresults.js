@@ -1,6 +1,19 @@
-app.SearchResults = {};
+app.Views = {};
+app.Models = {};
+app.Collections = {};
 
-app.SearchResults.View = Backbone.View.extend({
+app.Models.Search = Backbone.Model.extend({
+  urlRoot: '/search'
+})
+
+
+
+
+app.Views.SearchResults = Backbone.View.extend({
+
+  // var searchQuery = new app.Models.Search({input: $(".form-control").val()});
+
+
   template: _.template($('#search-template').html()),
 
   ajaxRequest: function(){

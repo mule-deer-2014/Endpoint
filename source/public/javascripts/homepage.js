@@ -20,6 +20,7 @@ app.HomePage.Views.HomeView = Backbone.View.extend({
 	},
 
 	clickSearch: function() {
-		app.router.navigate("searchResults", true)
+		var query = $(".form-control").val()
+		app.router.navigate("search="+query, true)
 	}
 })
