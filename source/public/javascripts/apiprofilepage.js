@@ -93,12 +93,14 @@ app.ApiProfile.Views.Reviews = Backbone.View.extend({
       $.ajax({
         url: '/reviews/'+ that.id +'/votes',
         type: 'POST',
-        data: {user_id: user_id},
+        data: {user_id: user_id, review_id: that.id},
       })
       .done(function(data) {
+        debugger
         var newVoteCount = data.vote_count
+        // NEED SOMEWHERE TO FIND THE CORRECT VOTECOUNT CLASS!!!!!!!!!!!!!!!!!!!!
         $(".vote-count").text(newVoteCount)
-      })
+      }.bind(this))
     }   
   },
 
