@@ -3,11 +3,12 @@ app.Models = {};
 app.Collections = {};
 
 app.Models.Search = Backbone.Model.extend({
+  initialize: function(opts) {
+    this.query = opts.query
+    console.log(this.query)
+  },
   urlRoot: '/search'
 })
-
-
-
 
 app.Views.SearchResults = Backbone.View.extend({
 

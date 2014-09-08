@@ -37,11 +37,16 @@ app.Router = Backbone.Router.extend({
 	},
 
 	navigateToSearchResults: function(query){
-		console.log(query)
+		
+
 		var navbar = new app.NavBar.Views.NavBarView();
 		$('#navbar').html(navbar.render().$el)
 		this.toggleNavBar();
-		var result = new app.Views.SearchResults();
+		
+
+		var searchModel = new app.Models.Search({query: query});
+
+		var result = new app.Views.SearchResults();		
 		result.render()
 	},
 
