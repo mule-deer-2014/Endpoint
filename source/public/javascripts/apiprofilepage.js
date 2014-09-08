@@ -71,7 +71,7 @@ app.ApiProfile.Views.Reviews = Backbone.View.extend({
   model: app.ApiProfile.Models.Review,
 
   events: {
-    "click .upvote": "upVote",
+    "click .vote": "upVote",
     "click .comment-toggler": "toggleComments"
   },
 
