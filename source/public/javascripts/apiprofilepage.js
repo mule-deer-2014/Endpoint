@@ -90,6 +90,7 @@ app.ApiProfile.Views.Reviews = Backbone.View.extend({
     .done(function(data) {
       debugger
       var newVoteCount = data.vote_count
+      $(".vote-count").text(newVoteCount)
       // find where da votes be at!!!
       // den be like you i need to update you!!!
       // den just update dat shit esse!!!
