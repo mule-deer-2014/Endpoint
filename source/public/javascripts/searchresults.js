@@ -1,10 +1,6 @@
 app.SearchResults = {};
 
 app.SearchResults.View = Backbone.View.extend({
-  events: {
-    "click a.list-group-item":"navigateToProfile"
-  },
-
   template: _.template($('#search-template').html()),
 
   ajaxRequest: function(){
@@ -31,7 +27,7 @@ app.SearchResults.View = Backbone.View.extend({
 
   navigateToProfile: function(){
     event.preventDefault();
-    var id = $(".container")[this.dataset.id].dataset.id
+    var id = this.dataset.id
     app.router.navigate("api/" + id, true)
   }
 

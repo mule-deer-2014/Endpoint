@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20140907012035) do
 
   create_table "users", force: true do |t|
     t.string   "email"
-    t.string   "password"
+    t.string   "password_hash"
     t.string   "about_me"
     t.string   "picture_url"
     t.datetime "created_at"

@@ -22,6 +22,7 @@ app.NavBar.Views.NavBarView = Backbone.View.extend({
 	},
 
 	login: function(){
+		event.preventDefault()
 		app.router.navigate("login", true)
 	},
 

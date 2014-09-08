@@ -1,5 +1,12 @@
+require 'bcrypt'
 class User < ActiveRecord::Base
 	include BCrypt
+	has_many :reviews
+	has_many :votes
+	has_many :comments
+	has_many :followings
+	has_many :apis, through: :followings
+
 	def password
     	@password ||= Password.new(password_hash)
   	end
@@ -8,9 +15,5 @@ class User < ActiveRecord::Base
 	    self.password_hash = @password
   	end
   	
-	has_many :reviews
-	has_many :votes
-	has_many :comments
-	has_many :followings
-	has_many :apis, through: :followings
+
 end

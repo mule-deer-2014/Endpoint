@@ -29,6 +29,13 @@ app.Router = Backbone.Router.extend({
 		$('#app-body').html(signup.render().$el);
 	},
 
+	navigateToLogin: function(){
+		this.resetBody()
+		this.toggleNavBar();
+		var login = new app.LogIn.Views.LoginPage(app.router);
+		$("#app-body").html(login.render().$el);
+	},
+
 	navigateToSearchResults: function(){
 		var navbar = new app.NavBar.Views.NavBarView();
 		$('#navbar').html(navbar.render().$el)
