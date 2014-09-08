@@ -7,9 +7,17 @@ class VotesController < ApplicationController
 
   # POST /reviews/:review_id/votes(.:format)
   def create
-    new_vote = Review.find(params[:review_id]).votes.new(params[:vote])
+
+    review = Review.find(params[:review_id])
+    new_vote = review.votes.new()
+    user = User.find(params[:user_id])
+    # user = User.find(params[:user_id])
+    #send userid
+
     if new_vote.save
-      render json: {vote: new_vote}.to_json
+      vote_count = review.votes.count
+      user.votes << new_vote
+      render json: {vote_count: vote_count}.to_json
     else
       render json: {errors: vote.errors}.to_json
     end
