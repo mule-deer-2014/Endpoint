@@ -64,6 +64,9 @@ app.ApiProfile.Models.Reviews = Backbone.Model.extend({
 })
 
 app.ApiProfile.Views.Reviews = Backbone.View.extend({
+  events: {
+    "click #upvote": "upVote"
+  },
   model: new app.ApiProfile.Models.Reviews,
 
   initialize: function(){
