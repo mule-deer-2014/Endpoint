@@ -4,40 +4,35 @@ app.Collections = {};
 
 app.Models.Search = Backbone.Model.extend({
   initialize: function(opts) {
-    this.query = opts.query
-    console.log(this.query)
+    this.set({input: opts.query});
   },
-  urlRoot: '/search'
+  url: '/search'
+})
+
+app.Models.SearchResult = Backbone.Model.extend({
+})
+
+app.Collections.SearchResults = Backbone.Collection.extend({
+  model: app.Models.SearchResult
+})
+
+app.Views.SearchResult = Backbone.View.extend({
+  template: _.template($('#search-template').html()),
+  render: function(){
+    compiledTemplate = this.template(this.model.attributes);
+    this.$el.html(compiledTemplate);
+    return this;
+  }
 })
 
 app.Views.SearchResults = Backbone.View.extend({
-
-  // var searchQuery = new app.Models.Search({input: $(".form-control").val()});
-
-
-  template: _.template($('#search-template').html()),
-
-  ajaxRequest: function(){
-    var input = $(".form-control").val()
-    Backbone.ajax({
-      url: "/search",
-      type: "get",
-      data: {input: input}
-    }).done(function(data){
-      var templates = ""
-      for (var i = 0; i < data.apis.length; i++){
-        templates += this.template(data.apis[i])
-      }
-      $('#app-body').empty();
-      $('#app-body').append('<div id="search-list"></div>');
-      $('#search-list').html(templates);
-      $(".result").on('click', this.navigateToProfile);
-    }.bind(this)).fail(function(){
-    })
-  },
-
   render: function(){
-    this.ajaxRequest();
+    $('#app-body').append('<div id="search-list"></div>');
+    this.collection.each(function(searchModel){
+      var searchView = new app.Views.SearchResult({model: searchModel})
+      $("#search-list").append(searchView.render().$el)
+    })
+    return this
   },
 
   navigateToProfile: function(){
@@ -45,8 +40,6 @@ app.Views.SearchResults = Backbone.View.extend({
     var id = this.dataset.id
     app.router.navigate("api/" + id, true)
   }
-
-
 })
 
 

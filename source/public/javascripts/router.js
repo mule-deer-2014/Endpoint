@@ -37,17 +37,14 @@ app.Router = Backbone.Router.extend({
 	},
 
 	navigateToSearchResults: function(query){
-		
-
-		var navbar = new app.NavBar.Views.NavBarView();
-		$('#navbar').html(navbar.render().$el)
+		this.resetBody()
 		this.toggleNavBar();
-		
-
 		var searchModel = new app.Models.Search({query: query});
-
-		var result = new app.Views.SearchResults();		
-		result.render()
+		searchModel.fetch({data: {input: searchModel.get("input")}}).done(function(data){
+			var searchResultCollection = new app.Collections.SearchResults(data.apis);
+			var searchResultsView = new app.Views.SearchResults({collection: searchResultCollection});
+			searchResultsView.render().$el;
+		})
 	},
 
 	navigateToApiProfile: function(id){
