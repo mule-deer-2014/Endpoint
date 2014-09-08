@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
       reviews.each do |rev|
         comments_array << rev.comments
       end     
-    	render json: {reviews: reviews, comments: comments_array.flatten}.to_json
+    	render json: {reviews: reviews, comments: comments_array.flatten vote: }.to_json
     elsif params[:user_id]
       	user = User.find(params[:user_id])
       	reviews = user.reviews 

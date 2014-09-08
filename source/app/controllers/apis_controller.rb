@@ -3,17 +3,17 @@ class ApisController < ApplicationController
   def create
     ## might need to changed parameters we are passing in
     new_api = Api.new(params[:api])
-    if new_api.save 
+    if new_api.save
       render json: {api: new_api}.to_json
     else
       render json: {errors: new_api.errors}
     end
-  end 
+  end
 
 
   # GET '/apis/:id'
   def show
-    api = Api.find(params[:id]) 
+    api = Api.find(params[:id])
     if api
       render json: {api: api}.to_json
     else

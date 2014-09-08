@@ -19,13 +19,12 @@
 
     <!-- Custom Fonts -->
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Cabin:300,500' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 </head>
 
-<body id="page-top" class="index">
-
+<body id="/" class="index">
   <div id='container'>
     <div id="navbar"></div>
     <div id="app-body"></div>
@@ -43,7 +42,7 @@
                       <span class="icon-bar"></span>
                       <span class="icon-bar"></span>
                   </button>
-                  <a class="navbar-brand page-scroll" href="#page-top">endpoint</a>
+                  <a class="navbar-brand page-scroll" href=" ">/endpoint</a>
               </div>
 
               <!-- Collect the nav links, forms, and other content for toggling -->
@@ -72,17 +71,19 @@
     <!-- Home Page Template -->
     <script id="home-template" type="text/template">
       <header>
+        <div class='container'>
           <div class="homepage">
               <div class="intro-text">
-                  <div class="intro-heading">endpoint</div>
+                  <div class="intro-heading">Welcome to endpoint!</div>
                     <div class="intro-lead-in">API discovery network</div>
                     <div class="form-group intro-heading">
-                      <input type="text" class="form-control" placeholder="Search">
+                      <input type="text" class="form-control" placeholder="What Api are you looking for?">
                       <button id="search" class="btn btn-default">Search</button>
                       <div id="search-error-message"></div>
                       </div>
               </div>
           </div>
+        </div>
       </header>
     </script>
 
@@ -94,6 +95,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                   <h5 class="text-center">SIGN UP</h5>
+                  <div class="errors"></div>
                     <form class="form form-signup" role="form">
                       <div class="form-group">
                           <div class="input-group">
@@ -126,6 +128,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                   <h5 class="text-center">LOGIN</h5>
+                  <div class="errors"></div>
                     <form class="form form-login" role="form">
                       <div class="form-group">
                           <div class="input-group">
@@ -153,38 +156,38 @@
 
   <!--  Search Results Template -->
 <script id="search-template" type="text/template">
-  <div class="result container" data-id=<%=id%>>
-      <div class="row">
-          <div class="well">
-              <div class="list-group">
-                  <a class="list-group-item">
-                      <div class="media col-md-3">
-                          <figure class="pull-left">
-                              <i class="fa fa-cloud-upload blogicon"></i>
-                          </figure>
-                      </div>
-                      <div class="col-md-6">
-                          <h4 class="list-group-item-heading">
-                            <%= title %>
-                          </h4>
-                          <p class="list-group-item-text">
-                            <%= description %>
-                          </p>
-                      </div>
-                      <div class="col-md-3 text-center">
-                          <div class="panel panel-default">
-                              <div class="panel-body">
-                                  <div class="stars"></div>
-                                  <h2><%=Math.round(average_score*20)%> <small> % </small></h2>
-                                  <div id="rate1"></div>
-                              </div>
-                          </div>
-                      </div>
-                  </a>
-                </div>
-            </div>
-       </div>
-  </div>
+    <div class="result" data-id=<%=id%>>
+        <div class="row">
+            <div class="well">
+                <div class="list-group">
+                    <a class="list-group-item">
+                        <div class="media col-md-3">
+                            <figure class="pull-left">
+                                <i class="fa fa-cloud-upload blogicon"></i>
+                            </figure>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="list-group-item-heading">
+                              <%= title %>
+                            </h4>
+                            <p class="list-group-item-text">
+                              <%= description %>
+                            </p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="stars"></div>
+                                    <h2><%=Math.round(average_score*20)%> <small> % </small></h2>
+                                    <div id="rate1"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                  </div>
+              </div>
+         </div>
+    </div>
 </script>
 
   <!--  Api Profile Template -->
@@ -222,79 +225,81 @@
     </div>
   </div>
   </script>
+
   <!-- Api Reviews Template -->
   <script id="apireviews-template" type="text/template">
     <div class="container api-reviews">
       <div class="container">
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#tab4" data-toggle="tab">Reviews</a></li>
+          <li class="active"><a href="#tab4" data-toggle="tab" id="reviews-list">Reviews</a></li>
           <li><a href="#tab5" data-toggle="tab">Add a Review</a></li>
           <li><a href="#tab6" data-toggle="tab">Rate</a></li>
         </ul>
         <div class="tab-content">
-        <div class="tab-pane active" id="tab4">
-          <div class="row">
-          <!-- start Laurens upvote area -->
-            <div class="votes col-md-1">
-              <button type="button" id="upvote" class="btn btn-default btn-lg">
-                <span class="glyphicon glyphicon-chevron-up"></span>
-              </button>
-
-              <h4> <span class="vote-count"><%= votes %></span> votes</h4>
-            </div>
-          <!-- end Laurens upvote area -->
-            <div class="col-md-11">
-              <p><%=content%></p>
-            </div>
+          <div class="tab-pane active" id="tab4"></div>
+          <div class="tab-pane" id="tab5">
+            <h2>Add a review unit coming soon!</h2>
           </div>
-          <div class="row">
-            <div class="col-md-1">
-            </div>
-            <div class="comment-toggler col-md-2"> <!-- This div needs an event listner to show/hide comments -->
-              <h5>Comments</h5>
-            </div>
-            <div class="col-md-7">
-            </div>
-            <div class="col-md-1">
-              <h6><%= created_at%></h6>
-            </div>
-            <div class="col-md-1">
-              <img src= <%= user_photo_url %>>
-            </div>
+          <div class="tab-pane" id="tab6">
+            <h2>Rate an API unit coming soon!</h2>
           </div>
-          <div class="row"> <!-- This row will be repeated for each comment -->
-            <div class="col-md-1">
-            </div>
-            <div>
-              <p><%=comment_content%></p>
-            </div>
-          </div>
-        </div>
-        <div class="tab-pane" id="tab5">
-          <h2>Add a review unit coming soon!</h2>
-        </div>
-        <div class="tab-pane" id="tab6">
-          <h2>Rate an API unit coming soon!</h2>
-        </div>
       </div>
     </div>
   </script>
 
+
+  <!--  End Template: Body Scripts -->
+    <script id="singlereview-template" type="text/template">
+        <div class="row">
+          <div class="votes col-md-1">
+          <button type="button" class="btn btn-default btn-lg">
+            <span id="votes" class="glyphicon glyphicon-chevron-up"></span>
+          </button>
+            <h4><%=votes%>votes</h4>
+          </div>
+          <div class="col-md-11">
+            <p><%=content%></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-2">
+            <h5><a href="" class="comment-toggler">Show comments</a></h5>
+          </div>
+          <div class="col-md-7">
+          </div>
+          <div class="col-md-1">
+            <h6><%= created_at%></h6>
+          </div>
+          <div class="col-md-1">
+          </div>
+        </div>
+        <div class="comment-area row" style="display:none">
+        // <!-- This row will be repeated for each comment -->
+          <div class="col-md-1">
+        </div>
+        </div>
+      </div>
+    </script>
+
+
+
   <!--  End Template: Body Scripts -->
 
-<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js" type="text/javascript"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js" type="text/javascript"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-<script src="javascripts/app.js"></script>
-<script src="javascripts/homepage.js"></script>
-<script src="javascripts/searchresults.js"></script>
-<script src="javascripts/navbar.js"></script>
-<script src="javascripts/apiprofilepage.js"></script>
-<script src="javascripts/signup.js"></script>
-<script src="javascripts/login.js"></script>
-<script src="javascripts/router.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js" type="text/javascript"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js" type="text/javascript"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+  <script src="javascripts/app.js"></script>
+  <script src="javascripts/homepage.js"></script>
+  <script src="javascripts/searchresults.js"></script>
+  <script src="javascripts/navbar.js"></script>
+  <script src="javascripts/apiprofilepage.js"></script>
+  <script src="javascripts/signup.js"></script>
+  <script src="javascripts/login.js"></script>
+  <script src="javascripts/router.js"></script>
 </body>
 </html>

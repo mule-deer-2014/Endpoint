@@ -6,7 +6,11 @@ class UsersController < ApplicationController
     if @user.save
       render json: {user: @user}.to_json
     else
-      render json: {errors: @user.errors}
+      errors = []
+      @user.errors.messages.each do |property, message|
+        errors.concat(message)
+      end
+      render json: {errors: errors}
     end
   end
 
@@ -35,9 +39,9 @@ class UsersController < ApplicationController
   def login
     user = User.where("email = ?", params[:email]).first
     if user && user.password == params[:password]
-      render json: {authenticate: true}.to_json
+      render json: {user: user}.to_json
     else
-      render json: {authenticate: false}.to_json
+      render json: {message: "user doesn't exist"}.to_json
     end
   end
 

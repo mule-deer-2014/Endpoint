@@ -48,42 +48,43 @@ app.ApiProfile.Views.Profile = Backbone.View.extend({
 })
 
 /////////////// Reviews Section
-app.ApiProfile.Models.Reviews = Backbone.Model.extend({
+app.ApiProfile.Models.Review = Backbone.Model.extend({
 
   initialize: function(){
   },
 
   defaults: {
-    "content": "I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! ",
-    "created_at": "9/12/14",
-    "comment_content": "Dudes, WTF are you talking about, this API sucks, they have 0 docs >:/",
-    "votes": "4",
-    "user_photo_url": "http://gravatar.com/avatar.jpg"
+    "score": "",
+    "content": "",
+    "title": "",
+    "created_at": "",
+    "user_id": "",
+    "user_photo_url": "",
+    "comment_content": ""
   }
-
 })
 
+
 app.ApiProfile.Views.Reviews = Backbone.View.extend({
+  
+  model: app.ApiProfile.Models.Review,
+
   events: {
-    "click #upvote": "upVote"
-  },
-  model: new app.ApiProfile.Models.Reviews,
-
-  initialize: function(){
+    "click #upvote": "upVote",
+    "click .comment-toggler": "toggleComments"
   },
 
-  template: _.template($('#apireviews-template').html()),
 
-  render: function() {
-    this.$el.html(this.template(this.model.attributes));
-    return this;
+  initialize: function(opts){
+    this.id = opts.id
   },
+
   upVote: function(){
     console.log("YOLO")
     var user_id = $.cookie("user_id")
     var that = this
     $.ajax({
-      url: '/reviews/1/votes',
+      url: '/reviews/'+ that.id +'/votes',
       type: 'POST',
       data: {user_id: user_id},
     })
@@ -91,18 +92,35 @@ app.ApiProfile.Views.Reviews = Backbone.View.extend({
       debugger
       var newVoteCount = data.vote_count
       $(".vote-count").text(newVoteCount)
-      // find where da votes be at!!!
-      // den be like you i need to update you!!!
-      // den just update dat shit esse!!!
-      console.log("success");
     })
-    .fail(function() {
-      debugger
-      console.log("error");
-    })
-    .always(function() {
-      console.log("complete");
-    });
+  },
 
-  }
+  toggleComments: function(e){
+    e.preventDefault();
+    $('.comment-area').toggle()
+  },
+
+  reviewsTemplate: _.template($('#apireviews-template').html()),
+  singleReviewTemplate: _.template($('#singlereview-template').html()),
+  
+  render: function() {
+    var reviewObject = new this.model;
+    var that = this;
+     Backbone.ajax({
+      url: '/apis/' + that.id + '/reviews',
+      type: 'GET'
+      }).done(function(data){
+        allReviewsHTML = ""
+        for(var i=0; i< data.reviews.length; i++){
+          reviewObject.set(data.reviews[i]);
+          console.log(data.reviews[i]);
+          debugger
+          var templates = that.$el.html(that.singleReviewTemplate(reviewObject.attributes));
+          allReviewsHTML += templates[0].innerHTML
+        };
+
+        $("#app-body").append(that.$el.html(that.reviewsTemplate()));
+        $("#tab4").append(allReviewsHTML);
+      })
+    }
 })

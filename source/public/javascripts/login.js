@@ -24,9 +24,12 @@ app.LogIn.Views.LoginPage = Backbone.View.extend({
 			type: 'get',
 			data: {email: this.email, password: this.password}
 		}).done(function(data){
-			debugger
-			$.cookie("user_id", data.user.id)
-			app.router.navigate("", true)
+			if (data.user) {
+				$.cookie("user_id", data.user.id)
+				app.router.navigate("", true)
+			} else {
+				$(".errors").html("Email or password is incorrect.")
+			}
 		})		
 	},
 

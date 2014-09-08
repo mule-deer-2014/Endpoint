@@ -4,9 +4,6 @@ describe UsersController do
       User.destroy_all
     end
     it "successfully creates a new user" do
-      user = User.create(email: "hi@gmail.com",
-                         password: "hiiiiii",
-                         about_me: "i'm a person")
       expect {
         post :create, email: "hi@gmail.com", password: "hiiiiii", about_me: "i'm a person"
       }.to change { User.count }
