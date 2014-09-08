@@ -92,7 +92,6 @@ app.ApiProfile.Views.Reviews = Backbone.View.extend({
       data: {user_id: user_id},
     })
     .done(function(data) {
-      debugger
       var newVoteCount = data.vote_count
       $(".vote-count").text(newVoteCount)
     })
