@@ -73,15 +73,19 @@ ENDPOINT.Routers = Backbone.Router.extend({
 		});
 
 		//display reviews on profile page
+		// debugger
 		var reviewListModel = new ENDPOINT.Models.ReviewList({url: "/apis/"+id+"/reviews"})
 		reviewListModel.fetch().done(function(data){
 			var reviewsCollection = new ENDPOINT.Collections.Reviews(data.reviews);
-
 			var reviewsView = new ENDPOINT.Views.Reviews({collection: reviewsCollection});
 			reviewsView.render();
 		});
-
+		// debugger
 		//post a user review
+		// debugger
+		// var userReviewModel = new ENDPOINT.Models.UserReview({id: id, url: "/apis/"+id+"/reviews"});
+		// var userReviewView = new ENDPOINT.Views.UserReview({model: userReviewModel});
+		// userReviewView.render();
 
 	},
 

@@ -1,6 +1,8 @@
 ENDPOINT.Models.UserReview = Backbone.Model.extend({
   	initialize: function(opts){
-  		this.id = opts.id
+  		this.set({id: opts.id, url: opts.url})
   	},
-  	url: '/apis/' + this.id + '/reviews'
+  	url: function(){
+  		return this.attributes.url
+  	}
 })
