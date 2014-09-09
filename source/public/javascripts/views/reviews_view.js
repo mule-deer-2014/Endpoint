@@ -3,7 +3,7 @@ ENDPOINT.Views.Review = Backbone.View.extend({
 
   events: {
     "click .comment-toggler": "toggleComments",
-    "click #submit": "submitReview",
+    // "click #submit": "submitReview",
     "click .votes": "upVote"
   },
 
@@ -31,20 +31,6 @@ ENDPOINT.Views.Review = Backbone.View.extend({
     }
   },
 
-  //this shit needs to be refactored
-  submitReview: function(){
-    event.preventDefault();
-    Backbone.ajax({
-    url: '/apis/' + this.id + '/reviews',
-    type: 'POST',
-    data: $('.reviewSubmission').serialize()
-    }).done(function(data){
-      console.log('success');
-      $('.feedback-success').toggle()
-    }).fail(function(){
-      console.log(errors)
-    });
-  },
 
   toggleComments: function(e){
     e.preventDefault();
@@ -59,14 +45,15 @@ ENDPOINT.Views.Review = Backbone.View.extend({
 })
 
 ENDPOINT.Views.Reviews = Backbone.View.extend({
-
   template: _.template($("#apireviews-template").html()),
+
   render: function(){
     $("#app-body").append(this.template());
     this.collection.each(function(reviewModel){
       var reviewView = new ENDPOINT.Views.Review({model: reviewModel});
       $("#tab4").append(reviewView.render().$el);
-    })
+    });
+    $("#submit").click(this.submitReview)
     return this;
   }
 
