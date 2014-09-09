@@ -224,23 +224,26 @@
         <div class="tab-content">
           <div class="tab-pane active" id="tab4"></div>
           <div class="tab-pane" id="tab5">
-            <div class="feedback-form">
-              <form class="reviewSubmission">
-                <span class="star-rating">
-                  <input type="radio" name="score" value="1"><i></i>
-                  <input type="radio" name="score" value="2"><i></i>
-                  <input type="radio" name="score" value="3"><i></i>
-                  <input type="radio" name="score" value="4"><i></i>
-                  <input type="radio" name="score" value="5"><i></i>
-                </span><br>
-                <input type="text" name="title"><br>
-                <textarea rows="3" cols="50" name="content"></textarea><br>
-                <input id="submit" type="submit" value="Submit">
-              </form>
-            </div>
-            <h4 class="feedback-success" style="display:none">Thank you for your feeback!</h4>
           </div>
       </div>
+    </div>
+  </script>
+
+  <!-- User Review (post) Tempalte -->
+  <script id="user-review-template" type="text/template">
+    <div class="feedback-form">
+      <form class="reviewSubmission">
+        <span class="star-rating">
+          <input type="radio" name="score" value="1"><i></i>
+          <input type="radio" name="score" value="2"><i></i>
+          <input type="radio" name="score" value="3"><i></i>
+          <input type="radio" name="score" value="4"><i></i>
+          <input type="radio" name="score" value="5"><i></i>
+        </span><br>
+        <input type="text" name="title"><br>
+        <textarea rows="3" cols="50" name="content"></textarea><br>
+        <input id="submit" type="submit" value="Submit">
+      </form>
     </div>
   </script>
 
@@ -303,6 +306,7 @@
 <script src="javascripts/models/apiprofile_reviews_model.js"></script>
 <script src="javascripts/models/login_model.js"></script>
 <script src="javascripts/models/signup_model.js"></script>
+<script src="javascripts/models/user_review_model.js"></script>
 <!-- LOAD COLLECTIONS  -->
 <script src="javascripts/collections/search_results_collection.js"></script>
 <script src="javascripts/collections/reviews_collection.js"></script>

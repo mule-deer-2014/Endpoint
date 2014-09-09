@@ -81,6 +81,8 @@ ENDPOINT.Routers = Backbone.Router.extend({
 			reviewsView.render();
 		});
 
+		//post a user review
+
 	},
 
 	toggleNavBar: function(){
