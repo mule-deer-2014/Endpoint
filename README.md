@@ -39,3 +39,30 @@ Features
 - Follow API
 - Spotlight API
 
+----
+
+## MVP Review
+
+### Demonstration
+
+Nicely done.
+
+### Did you achieve the goals?
+
+Yes.
+
+### Testing
+
+It was interesting that you reached for Cucumber.
+
+### Deployment
+
+Great use of deploy to heroku to ensure readiness.
+
+### Git Workflow
+
+Great use of reviews and PRs.  Good stuff.
+
+### Let's look at the Graphs
+
+Cool!

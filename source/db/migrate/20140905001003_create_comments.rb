@@ -5,6 +5,7 @@ class CreateComments < ActiveRecord::Migration
     	t.belongs_to :user
     	t.belongs_to :review
       	t.timestamps
+        # indentation for artistic flair!!!!
     end
   end
 end

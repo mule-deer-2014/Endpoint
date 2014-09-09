@@ -2,19 +2,20 @@ class CommentsController < ApplicationController
   #GET /reviews/:review_id/comments
   #GET /users/:user_id/comments
   def index
-    if params[:review_id]
-      review = Review.find(:review_id)
-      comments = review.comments   
-      render json: {comments: comments}.to_json
-    elsif params[:user_id]
-      user = User.find(params[:user_id])
-      comments = user.comments 
-      render json: {comments: comments}.to_json
-    else
-      render json: { message: "#{params[:review_id]} or #{params[:user_id]}} is not a valid review/user id!" }.to_json
+
+    # guard clause here
+    # then...
+    render json: {comments: determine_commentable.comments}.to_json
     end
   end
 
+  def determine_commentable
+    # Feel free to change the implementation of this, but the idea is that the
+    # "commentable thing" is determined in a private "helping" method.
+    (params[:review_id].empty? ? User.find(params[:user_id]) : Review.find(params[:review_id]))
+  end
+
+  private :determine_commentable
 
   # POST  /reviews/:review_id/comments
   def create

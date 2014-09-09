@@ -7,6 +7,7 @@ class SearchController < ApplicationController
   def search
     pg_apis = PgSearch.multisearch(params[:input])
   	if !(pg_apis.empty?)
+      # AAAAGGGGGGHHHHHHAAAGHHHH
       apis = []
       pg_apis.each do |api|
         apis << Api.find(api.id)

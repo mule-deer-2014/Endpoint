@@ -10,6 +10,7 @@ class VotesController < ApplicationController
     review = Review.find(params[:review_id])
     new_vote = review.votes.new()
     user = User.find(params[:user_id])
+    # Remove debug stuff...also prefer where(review_id: new_vote.review_id)
     puts "status #{user.votes.where("id = ?", new_vote.id).first}"
     if (user.votes.where("review_id = ?", new_vote.review_id).first).nil? && new_vote.save
       vote_count = review.votes.count

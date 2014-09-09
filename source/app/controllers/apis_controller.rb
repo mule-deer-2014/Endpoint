@@ -25,11 +25,11 @@ class ApisController < ApplicationController
   # PUT '/apis/:id'
   def update
     api = Api.find(params[:id])
-      if api.update_attributes(params[:api])
-        render json: {api: api}.to_json
-      else
-        render status: :unprocessable_entity, json: {errors: api.errors}.to_json
-      end
+    if api.update_attributes(params[:api])
+      render json: {api: api}.to_json
+    else
+      render status: :unprocessable_entity, json: {errors: api.errors}.to_json
+    end
   end
 
 end
