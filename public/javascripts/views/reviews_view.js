@@ -1,4 +1,8 @@
 ENDPOINT.Views.Review = Backbone.View.extend({
+
+  initialize: function(){
+    // debugger
+  },
   template: _.template($("#singlereview-template").html()),
 
   events: {
@@ -30,15 +34,21 @@ ENDPOINT.Views.Review = Backbone.View.extend({
     }
   },
 
-
   toggleComments: function(e){
     e.preventDefault();
-    $('.comment-area').toggle()
+    console.log("i love yohan")
+    // reviewId = event.target.parentElement.parentElement.dataset.comment
+    // commentsToToggle = $(".comments-area").find("[data-comment='"+reviewId+"']")
+    // debugger
+    // $(".comments-area").toggle()
   },
 
   render: function(){
     var filledTemplate = this.template(this.model.attributes);
     this.$el.html(filledTemplate)
+    var commentsCollection = new ENDPOINT.Collections.Comments(this.model.attributes.comments)
+    var commentsView = new ENDPOINT.Views.Comments({collection: commentsCollection});
+    this.$el.find("#comments-area").append(commentsView.render().$el);
     return this;
   }
 })
@@ -46,11 +56,11 @@ ENDPOINT.Views.Review = Backbone.View.extend({
 ENDPOINT.Views.Reviews = Backbone.View.extend({
    events: {
     "submit #submit-review": "submitReview",
-  }, 
+  },
 
   template: _.template($("#apireviews-template").html()),
   render: function(){
-    var filledTemplate = this.template(this.model.attributes);
+    var filledTemplate = this.template();
     this.$el.html(filledTemplate);
     var that = this
     this.collection.each(function(reviewModel){
@@ -59,11 +69,12 @@ ENDPOINT.Views.Reviews = Backbone.View.extend({
     })
     return this;
   },
+
   submitReview: function(event){
     event.preventDefault();
-    var reviewData = {title: $("input[name='title']").val(), 
+    var reviewData = {title: $("input[name='title']").val(),
                       content: $("textarea[name='content']").val(),
-                      score: $("input[name='score']:checked").attr("value"), 
+                      score: $("input[name='score']:checked").attr("value"),
                       api_id: this.model.attributes.api_id};
     this.model.save(reviewData).done(function(data){
       var url = "api/" + data.review.api_id;

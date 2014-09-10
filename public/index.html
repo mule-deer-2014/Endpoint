@@ -248,14 +248,12 @@
   <!--  End Template: Body Scripts -->
     <script id="singlereview-template" type="text/template">
         <div class="single-review row" data-id=<%=rev.id%>>
-        <!-- start Laurens upvote area -->
           <div class="votes col-md-1">
           <button type="button" class="btn btn-default btn-lg">
             <span id="votes" class="glyphicon glyphicon-chevron-up"></span>
           </button>
             <h4><span class="vote-count"> <%=votes.length%> votes</span></h4>
           </div>
-        <!-- end Laurens upvote area -->
           <div class="col-md-11">
             <p><%=rev.content%></p>
           </div>
@@ -263,28 +261,33 @@
         <div class="row">
           <div class="col-md-1">
           </div>
-          <div class="col-md-2">
+          <div id="comment-parent"class="col-md-8">
             <h5><a href="" class="comment-toggler">Show comments</a></h5>
+            <div id="comments-area" class="col-md-8">
+            </div>
           </div>
-          <div class="col-md-7">
-          </div>
+
           <div class="col-md-1">
             <h6><%= rev.created_at%></h6>
           </div>
           <div class="col-md-1">
           </div>
         </div>
-        <div class="row comment-area" style="display:none">
-<!-- This row will be repeated for each comment on a review -->
-        <div class="col-md-1">
-        </div>
-        <div class="col-md-11">
-        <p>This area will contain reviews comments</p>
-        </div>
-        </div>
       </div>
     </script>
 
+<script id="comments-template" type="text/template">
+  <div id="comment-space" class="row">
+  </div>
+</script>
+
+<script id="comment-template" type="text/template">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-11">
+    <p><%=content%></p>
+  </div>
+</script>
 
 
   <!--  End Template: Body Scripts -->
@@ -301,14 +304,17 @@
 <script src="javascripts/models/search_model.js"></script>
 <script src="javascripts/models/apiprofile_model.js"></script>
 <script src="javascripts/models/apiprofile_reviews_model.js"></script>
+<script src="javascripts/models/comment_model.js"></script>
 <script src="javascripts/models/login_model.js"></script>
 <script src="javascripts/models/signup_model.js"></script>
 <!-- LOAD COLLECTIONS  -->
 <script src="javascripts/collections/search_results_collection.js"></script>
 <script src="javascripts/collections/reviews_collection.js"></script>
+<script src="javascripts/collections/comments_collection.js"></script>
 <!-- LOAD VIEWS -->
 <script src="javascripts/views/reviews_view.js"></script>
 <script src="javascripts/views/api_profile_view.js"></script>
+<script src="javascripts/views/comments_view.js"></script>
 <script src="javascripts/views/homepage_view.js"></script>
 <script src="javascripts/views/login_view.js"></script>
 <script src="javascripts/views/navbar_view.js"></script>
