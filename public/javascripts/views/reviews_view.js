@@ -1,7 +1,8 @@
 ENDPOINT.Views.Review = Backbone.View.extend({
 
-  initialize: function(){
-    // debugger
+  initialize: function(opts){
+    this.api_id = opts.api_id
+    debugger
   },
   template: _.template($("#singlereview-template").html()),
 
@@ -37,10 +38,6 @@ ENDPOINT.Views.Review = Backbone.View.extend({
   toggleComments: function(e){
     e.preventDefault();
     console.log("i love yohan")
-    // reviewId = event.target.parentElement.parentElement.dataset.comment
-    // commentsToToggle = $(".comments-area").find("[data-comment='"+reviewId+"']")
-    // debugger
-    // $(".comments-area").toggle()
   },
 
   render: function(){
@@ -48,7 +45,6 @@ ENDPOINT.Views.Review = Backbone.View.extend({
     this.$el.html(filledTemplate)
     var commentsCollection = new ENDPOINT.Collections.Comments({review_id: this.model.attributes.rev.id})
     commentsCollection.set(this.model.attributes.comments)
-    // debugger
     var commentsView = new ENDPOINT.Views.Comments({collection: commentsCollection});
     this.$el.find("#comments-area").append(commentsView.render().$el);
     return this;
@@ -66,7 +62,7 @@ ENDPOINT.Views.Reviews = Backbone.View.extend({
     this.$el.html(filledTemplate);
     var that = this
     this.collection.each(function(reviewModel){
-      var reviewView = new ENDPOINT.Views.Review({model: reviewModel});
+      var reviewView = new ENDPOINT.Views.Review({model: reviewModel, api_id: that.model.attributes.api_id});
       that.$el.find("#tab4").append(reviewView.render().$el);
     })
     return this;
