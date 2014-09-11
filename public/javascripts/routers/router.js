@@ -80,11 +80,6 @@ ENDPOINT.Routers = Backbone.Router.extend({
 		reviewsCollection.fetch().done(function(data){
 			var reviewsCollection = new ENDPOINT.Collections.Reviews(data.reviews);
 			var reviewsView = new ENDPOINT.Views.Reviews({collection: reviewsCollection, model: reviewModel});
-
-
-			var commentsCollection = ENDPOINT.Collections.Comments
-
-
 			$("#app-body").append(reviewsView.render().$el);
 		});
 
