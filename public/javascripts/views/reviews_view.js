@@ -2,8 +2,8 @@ ENDPOINT.Views.Review = Backbone.View.extend({
 
   initialize: function(opts){
     this.api_id = opts.api_id
-    debugger
   },
+
   template: _.template($("#singlereview-template").html()),
 
   events: {

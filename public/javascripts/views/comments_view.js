@@ -27,7 +27,7 @@ ENDPOINT.Views.Comments = Backbone.View.extend({
                       user_id: userId
                       }
     this.collection.create(newComment)
-    // debugger
+    debugger
     var url = "api/" + data.review.api_id;
     ENDPOINT.router.navigate("", true)
     ENDPOINT.router.navigate(url, true)
