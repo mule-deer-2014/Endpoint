@@ -12,7 +12,8 @@ class SearchController < ApplicationController
         api_db = Api.find(api.id)
         average_score = api_db.average_score
         api_hash = {id: api_db.id, title: api_db.title, description: api_db.description, 
-                    tips: api_db.tips, logo_url: api_db.logo_url, average_score: average_score, review_count: api_db.reviews.count}
+                    tips: api_db.tips, logo_url: api_db.logo_url, average_score: average_score, 
+                    review_count: api_db.reviews.count, category: api_db.category}
         apis << api_hash
       end
       apis.sort_by!{|api_hash| api_hash[:average_score]}
