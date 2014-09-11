@@ -17,12 +17,12 @@
 
 a.list-group-item {
     height: auto;
-    min-height: 250px;
+    min-height: 200px;
 }
 
 a.list-group-item:hover, a.list-group-item:focus {
-    border-left:10px solid #5CB85C;
-    border-right:10px solid #5CB85C;
+    border-left:10px solid #EBD6F5;
+    border-right:10px solid #EBD6F5;
 }
 
 a.list-group-item {

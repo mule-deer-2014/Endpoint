@@ -48,18 +48,18 @@
               <!-- Collect the nav links, forms, and other content for toggling -->
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav navbar-right">
-                      <li class="hidden">
-                          <a href="#page-top"></a>
-                      </li>
-                      <li>
-                          <a href ="" class="hidden page-scroll" id="login">Login</a>
-                      </li>
-                      <li>
-                          <a href= "" class="hidden page-scroll" id="sign-up">Sign Up</a>
-                      </li>
-                      <li>
-                        <a href ="" class="hidden page-scroll" id="logout">Logout</a>
-                      </li>
+                    <li class="hidden">
+                      <a href="#page-top"></a>
+                    </li>
+                    <li>
+                      <a href ="" class="hidden page-scroll" id="login">Login</a>
+                    </li>
+                    <li>
+                      <a href= "" class="hidden page-scroll" id="sign-up">Sign Up</a>
+                    </li>
+                    <li>
+                      <a href ="" class="hidden page-scroll" id="logout">Logout</a>
+                    </li>
                   </ul>
               </div>
               <!-- /.navbar-collapse -->
@@ -88,11 +88,11 @@
 
    <!--  Signup Template -->
   <script id="signup-template" type="text/template">
-      <div class="container" id="signup-template">
+      <div class="container authentication" id="signup-template">
         <div class="row">
           <div class="col-md-4 col-md-offset-4">
             <div class="panel panel-default">
-                <div class="panel-body">
+                <div class="authentication panel-body">
                   <h5 class="text-center">SIGN UP</h5>
                   <div class="errors"></div>
                     <form class="form form-signup" role="form">
@@ -116,73 +116,65 @@
   </script>
   <!--  Login Template -->
   <script id="login-template" type="text/template">
-      <div class="container" id="signup-template">
-        <div class="row">
-          <div class="col-md-4 col-md-offset-4">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                  <h5 class="text-center">LOGIN</h5>
-                  <div class="errors"></div>
-                    <form class="form form-login" role="form">
-                      <div class="form-group">
-                        <div class="input-group">
-                          <input type="text" name="email" class="form-control" placeholder="Email Address" />
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="input-group">
-                          <input type="password" name="password" class="form-control" placeholder="Password" />
-                        </div>
-                      </div>
-                </div>
-                  <a class="btn btn-sm btn-primary btn-block" role="button" id="submit">
-                        SUBMIT</a> </form>
-              </div>
+    <div class="container authentication" id="signup-template">
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h5 class="text-center">LOGIN</h5>
+              <div class="errors"></div>
+                <form class="form form-login" role="form">
+                  <div class="form-group">
+                    <input type="text" name="email" class="form-control" placeholder="Email Address" />
+                  </div>
+                  <div class="form-group">
+                    <input type="password" name="password" class="form-control" placeholder="Password" />
+                    </div>
+                  <a class="btn btn-sm btn-primary btn-block" role="button" id="submit"> SUBMIT</a>
+                </form>
+            </div>
           </div>
         </div>
       </div>
+    </div>
   </script>
 
   <!--  Search Results Template -->
 <script id="search-template" type="text/template">
-    <div class="result" data-id=<%=id%>>
-        <div class="row">
-            <div class="well">
-                <div class="list-group">
-                    <a id="link" class="list-group-item">
-                        <div class="media col-md-3">
-                            <figure class="pull-left">
-                                <i class="fa fa-cloud-upload blogicon"></i>
-                            </figure>
-                        </div>
-                        <div class="col-md-6">
-                            <h4 class="list-group-item-heading">
-                              <%= title %>
-                            </h4>
-                            <p class="list-group-item-text">
-                              <%= description %>
-                            </p>
-                        </div>
-                        <div class="col-md-3 text-center">
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div class="stars"></div>
-                                    <h2><%=Math.round(average_score*20)%> <small> % </small></h2>
-                                    <div id="rate1"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                  </div>
-              </div>
-         </div>
+  <div class="result container-fluid" data-id=<%=id%>>
+    <div class="row">
+      <div class="list-group">
+        <a class="list-group-item">
+          <div class="media col-md-2 col-sm-2 col-xs-2">
+            <div class="circle">
+              <div class="stars"></div>
+                <h3><%=Math.round(average_score*20)%> <small> % </small></h3>
+              <div id="rate1"></div>
+            </div>
+          </div>
+          <div class="list-title-text col-md-7 col-sm-10 col-sm-10">
+            <h4 class="list-group-item-heading">
+              <%= title %>
+            </h4>
+            <p class="list-group-item-text">
+              <%= description %>
+            </p>
+          </div>
+          <div class='review-count col-md-3'>
+            <h3><%=review_count %></h3>
+            <p>reviews</p>
+            <img src=<%=logo_url%>>
+            <h6><%=category%></h6>
+          </div>
+        </a>
+      </div>
     </div>
+  </div>
 </script>
 
   <!--  Api Profile Template -->
   <script id="apiprofile-template" type="text/template">
-  <div class="container api-trading-card">
-    <div class="container">
+    <div class="container api-trading-card">
       <ul class="nav nav-tabs">
         <li class="active"><a href="#tab1" data-toggle="tab">Info</a></li>
         <li><a href="#tab2" data-toggle="tab">Tips & Tricks</a></li>
@@ -193,6 +185,7 @@
         <img src=<%= logo_url %>>
         <ul>
           <li><h3><%= title %></h3></li>
+          <li><h5>(<%= category %>)</li>
           <li><p>Description: <%= description %></p></li>
         </ul>
         <div><h2><%=Math.round(average_score*20)%>%</h2></div>
@@ -200,7 +193,9 @@
       <div class="tab-pane" id="tab2">
         <ul>
           <li><h3><%= title %></h3></li>
-          <li>Tips Go Here...</li>
+          <li>Key Required? <%=key_required%></li>
+          <li>Endpoint Url: <%=endpoint_url%></li>
+          <li>Dev Homepage: <%=dev_homepage%></li>
         </ul>
       </div>
       <div class="tab-pane" id="tab3">
@@ -210,37 +205,34 @@
         </ul>
       </div>
     </div>
-  </div>
   </script>
 
   <!-- Api Reviews Template -->
   <script id="apireviews-template" type="text/template">
     <div class="container api-reviews">
-      <div class="container">
-        <ul class="nav nav-tabs">
-          <li class="active"><a href="#tab4" data-toggle="tab" id="reviews-list">Reviews</a></li>
-          <li><a href="#tab5" data-toggle="tab">Add a Review</a></li>
-        </ul>
-        <div class="tab-content">
-          <div class="tab-pane active" id="tab4"></div>
-          <div class="tab-pane" id="tab5">
-            <div class="feedback-form">
-              <form class="reviewSubmission" id="submit-review">
-                <span class="star-rating">
-                  <input type="radio" name="score" value="1"><i></i>
-                  <input type="radio" name="score" value="2"><i></i>
-                  <input type="radio" name="score" value="3"><i></i>
-                  <input type="radio" name="score" value="4"><i></i>
-                  <input type="radio" name="score" value="5"><i></i>
-                </span><br>
-                <input type="text" name="title"><br>
-                <textarea rows="3" cols="50" name="content"></textarea><br>
-                <input type="submit" value="Submit">
-              </form>
-            </div>
-            <h4 class="feedback-success" style="display:none">Thank you for your feeback!</h4>
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab4" data-toggle="tab" id="reviews-list">Reviews</a></li>
+        <li><a href="#tab5" data-toggle="tab">Add a Review</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab4"></div>
+        <div class="tab-pane" id="tab5">
+          <div class="feedback-form">
+            <form class="reviewSubmission" id="submit-review">
+              <span class="star-rating">
+                <input type="radio" name="score" value="1"><i></i>
+                <input type="radio" name="score" value="2"><i></i>
+                <input type="radio" name="score" value="3"><i></i>
+                <input type="radio" name="score" value="4"><i></i>
+                <input type="radio" name="score" value="5"><i></i>
+              </span><br>
+              <input type="text" name="title" placeholder="Title"><br>
+              <textarea rows="6" cols="100" name="content" placeholder="You're Review Here..."></textarea><br>
+              <input type="submit" value="Submit">
+            </form>
           </div>
-      </div>
+          <h4 class="feedback-success" style="display:none">Thank you for your feeback!</h4>
+        </div>
     </div>
   </script>
 
@@ -255,6 +247,7 @@
             <h4><span class="vote-count"> <%=votes.length%> votes</span></h4>
           </div>
           <div class="col-md-11">
+            <h3><%=rev.title%></h3>
             <p><%=rev.content%></p>
           </div>
         </div>

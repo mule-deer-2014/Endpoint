@@ -11,6 +11,7 @@ class ReviewsController < ApplicationController
         review["rev"] = rev
         review["votes"] = rev.votes
         review["comments"] = rev.comments
+        review["user"] = rev.user
         reviews << review
       end
       reviews.sort_by!{|rev_obj| rev_obj["votes"].count}
