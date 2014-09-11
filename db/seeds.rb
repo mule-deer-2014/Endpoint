@@ -1,6 +1,5 @@
-require 'rest_client'
 require 'json'
-
+require 'csv'
 return_arrays = []
 CSV.foreach("database.csv") do |row|
    return_arrays << row.to_a
