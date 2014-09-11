@@ -19,9 +19,9 @@ class CommentsController < ApplicationController
 
   private
 
-  def determine_commentable_type
-    (params[:review_id].nil? ? User.find(params[:user_id]) : Review.find(params[:review_id]))
-  end
+    def determine_commentable_type
+      (params[:review_id].nil? ? User.find(params[:user_id]) : Review.find(params[:review_id]))
+    end
 end
 
 

@@ -281,14 +281,14 @@
   </div>
   <form>
     <textarea rows="3" cols="50" name="content"></textarea><br>
-    <input type="submit" value="Submit">
+    <input class="submission"type="submit" value="Submit">
   </form>
 </script>
 
 <script id="comment-template" type="text/template">
   <div class="col-md-1">
   </div>
-  <div class="col-md-11">
+  <div data-id=<%=review_id%> class="col-md-11">
     <p><%=content%></p>
   </div>
 </script>

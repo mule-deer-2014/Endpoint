@@ -46,7 +46,9 @@ ENDPOINT.Views.Review = Backbone.View.extend({
   render: function(){
     var filledTemplate = this.template(this.model.attributes);
     this.$el.html(filledTemplate)
-    var commentsCollection = new ENDPOINT.Collections.Comments(this.model.attributes.comments)
+    var commentsCollection = new ENDPOINT.Collections.Comments({review_id: this.model.attributes.rev.id})
+    commentsCollection.set(this.model.attributes.comments)
+    // debugger
     var commentsView = new ENDPOINT.Views.Comments({collection: commentsCollection});
     this.$el.find("#comments-area").append(commentsView.render().$el);
     return this;
