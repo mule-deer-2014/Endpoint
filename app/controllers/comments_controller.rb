@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
 
   # POST  /reviews/:review_id/comments
   def create
-    comment = Comment.new(params[:comment])
+    comment = Comment.new(content: params[:content], user_id: params[:user_id], review_id: params[:review_id])
     if comment.save
       review = Review.find(params[:review_id])
       review.comments << comment
