@@ -16,9 +16,10 @@ class UsersController < ApplicationController
 
   # GET '/users/:id'
   def show
-    user = User.find(params[:id])
+    p user = User.find(params[:id])
     if user
-      render json: {user: user}.to_json
+      user_hash = {username: user.username, email: user.email}
+      render json: {user: user_hash}.to_json
     else
       render status: :unprocessable_entity, json: { message: "#{params[:id]} is not a valid api id!" }.to_json
     end
