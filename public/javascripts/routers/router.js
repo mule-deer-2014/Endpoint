@@ -5,14 +5,15 @@ ENDPOINT.Routers = Backbone.Router.extend({
 		"login": "navigateToLogin",
 		"search=:query": "navigateToSearchResults",
 		"api/:id": "navigateToApiProfile",
-    "admin": "navigateToAdmin"
+    "admin": "navigateToAdmin",
+    "user/:id": "navigateToUserProfile"
 	},
 
 
 	resetBody: function(){
 		$('#app-body').empty();
 		var hasNavbar = false
-		for (var i = 0 ; i < ENDPOINT.CurrentState.Views.length; i++) {
+		for (var i = 0; i < ENDPOINT.CurrentState.Views.length; i++) {
 			ENDPOINT.CurrentState.Views[i].remove();
 			if(ENDPOINT.CurrentState.Views[i].isNavbar){
 				hasNavbar = true;
@@ -27,6 +28,7 @@ ENDPOINT.Routers = Backbone.Router.extend({
 
   navigateToAdmin: function(){
     this.resetBody();
+    this.toggleNavBar();
     var adminView = new ENDPOINT.Views.AdminView();
     $('#app-body').html(adminView.render().$el);
   },
@@ -93,6 +95,17 @@ ENDPOINT.Routers = Backbone.Router.extend({
 
 		});
 	},
+
+	navigateToUserProfile: function(id){
+    this.resetBody();
+    this.toggleNavBar();
+
+    var userProfileModel = new ENDPOINT.Models.UserProfile({url: "/users/" + id});
+    userProfileModel.fetch().done(function(data){
+		  var userProfileView = new ENDPOINT.Views.UserProfile({model: userProfileModel});
+      $('#app-body').html(userProfileView.render().$el);
+    });
+  },
 
 	toggleNavBar: function(){
 		if ($.cookie("user_id")){
