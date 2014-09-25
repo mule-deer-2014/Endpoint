@@ -333,10 +333,17 @@
       </div>
     </script>
 
+    <!-- User Profile Template -->
+    <script id="user-profile-template" type="text/template">
+    <div class="container">
+        <ul>
+          <li><h3 class='user'><%= username %></h3></li>
+          <li class='about-me'><h5><%= email %></li>
+        </ul>
+    </div>
+    </script>
 
-
-  <!--  End Template: Body Scripts -->
-
+<!--  End Template: Body Scripts -->
 <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js" type="text/javascript"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js" type="text/javascript"></script>
@@ -348,6 +355,7 @@
 <!-- LOAD MODELS -->
 <script src="javascripts/models/search_model.js"></script>
 <script src="javascripts/models/apiprofile_model.js"></script>
+<script src="javascripts/models/user_profile_model.js"></script>
 <script src="javascripts/models/apiprofile_reviews_model.js"></script>
 <script src="javascripts/models/login_model.js"></script>
 <script src="javascripts/models/signup_model.js"></script>
@@ -358,6 +366,7 @@
 <script src="javascripts/views/admin_view.js"></script>
 <script src="javascripts/views/reviews_view.js"></script>
 <script src="javascripts/views/api_profile_view.js"></script>
+<script src="javascripts/views/user_profile_view.js"></script>
 <script src="javascripts/views/homepage_view.js"></script>
 <script src="javascripts/views/login_view.js"></script>
 <script src="javascripts/views/navbar_view.js"></script>
